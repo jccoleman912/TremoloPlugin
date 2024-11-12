@@ -9,3 +9,18 @@
 */
 
 #include "TremoloProcessing.h"
+
+#include <cmath>
+
+float TremoloProcessing::processSample(float x, const int c){
+
+    
+}
+
+void TremoloProcessing::setFrequency(float frequencyHZ) {
+
+}
+
+void TremoloProcessing::setCurrentSample(int intCurrentSample) {
+   
+}

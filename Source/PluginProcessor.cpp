@@ -150,9 +150,33 @@ void TremoloPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    
+
+    
+    
+    
+    
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
+        
+        for (int n = 0; n < buffer.getNumSamples(); ++n)
+        {
+            
+            playHead = this->getPlayHead();
+
+            playHead->getCurrentPosition(positionInfo);
+            currentSamp = positionInfo.timeInSamples;
+            
+            tremoloProcessor.setCurrentSample(currentSamp);
+            
+            x = buffer.getWritePointer(channel)[n];
+            y = tremoloProcessor.processSample(x, channel);
+            buffer.getWritePointer(channel)[n] = y;
+        }
+
+        
+        
+        
 
         // ..do something to the data...
     }

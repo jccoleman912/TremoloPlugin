@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "TremoloProcessing.h"
 
 //==============================================================================
 /**
@@ -57,6 +58,17 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    
+    TremoloProcessing tremoloProcessor;
+    
+    juce::AudioPlayHead* playHead;
+    
+    juce::AudioPlayHead::CurrentPositionInfo positionInfo;
+    
+    float x = 0.f;
+    float y = 0.f;
+    float currentSamp;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TremoloPluginAudioProcessor)
 };
