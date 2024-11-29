@@ -48,11 +48,8 @@ private:
      Initializing the parameters that will be controlled with buttons.
      */
     juce::ToggleButton bypassButton;
-    juce::ToggleButton tripletButton;
-    juce::ToggleButton dottedButton;
-    juce::ToggleButton syncButton;
-    juce::ToggleButton rateSelectorButton;
-    juce::ToggleButton tempoSelectorButton;
+    juce::ToggleButton monoRadioButton;
+    juce::ToggleButton stereoRadioButton;
     
     
     /*

@@ -13,14 +13,19 @@
 #include <cmath>
 
 float TremoloProcessing::processSample(float x, const int c){
-
     
+    
+    return y;
 }
 
 void TremoloProcessing::setFrequency(float frequencyHZ) {
-
+    rate = frequencyHZ;
 }
 
 void TremoloProcessing::setCurrentSample(int intCurrentSample) {
-   
+    currentSample = intCurrentSample;
+}
+
+void TremoloProcessing::setDepth(int intDepthPercentage) {
+    depth = intDepthPercentage;
 }
