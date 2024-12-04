@@ -43,6 +43,7 @@ private:
     juce::Slider rateSlider;
     juce::Slider tempoSlider;
     juce::Slider mixSlider;
+    juce::Slider gainSlider;
     
     /*
      Initializing the parameters that will be controlled with buttons.
@@ -64,6 +65,7 @@ private:
     juce::Label rateLabel;
     juce::Label tempoLabel;
     juce::Label mixLabel;
+    juce::Label gainLabel;
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TremoloPluginAudioProcessorEditor)

@@ -50,7 +50,7 @@ void TremoloPluginAudioProcessorEditor::resized()
     // Slider and Label for "Rate (Hz)" parameter
     
     rateSlider.setBounds(500,100,100,100);
-    rateSlider.setRange(0.f,30.f,0.1f); // (min, max, interval)
+    rateSlider.setRange(0.1f,30.f,0.1f); // (min, max, interval)
     rateSlider.setValue(0.f); // initial value
     rateSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     rateSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 75, 25);
@@ -82,11 +82,11 @@ void TremoloPluginAudioProcessorEditor::resized()
     // Slider and Label for "Mix" parameter
     
     mixSlider.setBounds(500,380,100,100);
-    mixSlider.setRange(0.f,30.f,0.1f); // (min, max, interval)
+    mixSlider.setRange(0.f,100.f,0.1f); // (min, max, interval)
     mixSlider.setValue(0.f); // initial value
     mixSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     mixSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 75, 25);
-    rateSlider.addListener(this);
+    mixSlider.addListener(this);
     addAndMakeVisible(mixSlider);
     
     mixLabel.setText("Mix (%)", juce::dontSendNotification);
@@ -95,12 +95,31 @@ void TremoloPluginAudioProcessorEditor::resized()
     mixLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
     addAndMakeVisible(mixLabel);
     
+    // Slider and Label for "Gain" parameter
+    
+    gainSlider.setBounds(325,450,100,100);
+    gainSlider.setRange(0.f,100.f,0.1f); // (min, max, interval)
+    gainSlider.setValue(0.f); // initial value
+    gainSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 75, 25);
+    gainSlider.addListener(this);
+    addAndMakeVisible(gainSlider);
+    
+    gainLabel.setText("Gain (%)", juce::dontSendNotification);
+    gainLabel.attachToComponent(&gainSlider, false);
+    gainLabel.setJustificationType(juce::Justification::centredTop);
+    gainLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
+    addAndMakeVisible(gainLabel);
+    
 }
 
 
 
 void TremoloPluginAudioProcessorEditor::sliderValueChanged(juce::Slider *slider) {
     
+    if(slider == &gainSlider) {
+        audioProcessor.gainValue = slider->getValue();
+    }
     
 }
 

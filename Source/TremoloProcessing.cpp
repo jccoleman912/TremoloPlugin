@@ -14,8 +14,10 @@
 
 float TremoloProcessing::processSample(float x, const int c){
     
+    y = gain * x;
     
     return y;
+    
 }
 
 void TremoloProcessing::setFrequency(float frequencyHZ) {
@@ -26,6 +28,10 @@ void TremoloProcessing::setCurrentSample(int intCurrentSample) {
     currentSample = intCurrentSample;
 }
 
-void TremoloProcessing::setDepth(int intDepthPercentage) {
+void TremoloProcessing::setDepth(float intDepthPercentage) {
     depth = intDepthPercentage;
+}
+
+void TremoloProcessing::setGain(float inGain) {
+    gain = inGain;
 }

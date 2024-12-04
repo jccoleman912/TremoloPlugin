@@ -69,6 +69,10 @@ private:
     float y = 0.f;
     float currentSamp;
     
+public:
+    
+    float gainValue;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TremoloPluginAudioProcessor)
 };

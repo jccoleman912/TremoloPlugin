@@ -30,16 +30,18 @@ public:
     
     void setCurrentSample(int intCurrentSample);
     
-    void setDepth(int intDepthPercentage);
+    void setDepth(float intDepthPercentage);
+    
+    void setGain(float inGain);
     
     float getSampleRate();
 
     
 private:
     
-    float y;
+    float y = 0.f;
     // Input parameters
-    float depth, rate;
+    float depth, rate, gain;
     
     int currentSample;
     
