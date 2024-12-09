@@ -28,7 +28,7 @@ public:
     
     void setFrequency(float frequencyHZ);
     
-    void setCurrentSample(int intCurrentSample);
+    void setCurrentTime(juce::Optional<double> timeInSeconds);
     
     void setDepth(float intDepthPercentage);
     
@@ -41,9 +41,9 @@ private:
     
     float y = 0.f;
     // Input parameters
-    float depth, rate, gain;
+    float depth, rate = 2.f, gain, period, phase = 0.f, LFO;
     
-    int currentSample;
+    double currentTimeInSeconds;
     
     float Fs;
     

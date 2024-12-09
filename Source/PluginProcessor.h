@@ -63,11 +63,11 @@ private:
     
     juce::AudioPlayHead* playHead;
     
-    juce::AudioPlayHead::CurrentPositionInfo positionInfo;
+    juce::Optional<juce::AudioPlayHead::PositionInfo> positionInfo;
     
     float x = 0.f;
     float y = 0.f;
-    float currentSamp;
+    juce::Optional<double> currentTimeInSeconds;
     
 public:
     

@@ -162,12 +162,13 @@ void TremoloPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
         for (int n = 0; n < buffer.getNumSamples(); ++n)
         {
             
-//            playHead = this->getPlayHead();
-//
+            playHead = this->getPlayHead();
+
 //            playHead->getCurrentPosition(positionInfo);
-//            currentSamp = positionInfo.timeInSamples;
-//            
-//            tremoloProcessor.setCurrentSample(currentSamp);
+            positionInfo = playHead->getPosition();
+            currentTimeInSeconds = positionInfo->getTimeInSeconds();
+            
+            tremoloProcessor.setCurrentTime(currentTimeInSeconds);
             
             tremoloProcessor.setGain(gainValue/100.f);
             

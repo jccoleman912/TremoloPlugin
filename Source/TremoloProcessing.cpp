@@ -14,7 +14,9 @@
 
 float TremoloProcessing::processSample(float x, const int c){
     
-    y = gain * x;
+    LFO = sin(2 * M_PI * 1.f * currentTimeInSeconds);
+    
+    y = x * LFO;
     
     return y;
     
@@ -24,8 +26,12 @@ void TremoloProcessing::setFrequency(float frequencyHZ) {
     rate = frequencyHZ;
 }
 
-void TremoloProcessing::setCurrentSample(int intCurrentSample) {
-    currentSample = intCurrentSample;
+void TremoloProcessing::setCurrentTime(juce::Optional<double> timeInSeconds) {
+    if(timeInSeconds.hasValue()) {
+        currentTimeInSeconds = *timeInSeconds;
+    } else {
+        currentTimeInSeconds = 0.0;
+    }
 }
 
 void TremoloProcessing::setDepth(float intDepthPercentage) {
