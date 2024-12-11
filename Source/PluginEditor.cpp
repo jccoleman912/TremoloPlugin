@@ -118,7 +118,16 @@ void TremoloPluginAudioProcessorEditor::resized()
 void TremoloPluginAudioProcessorEditor::sliderValueChanged(juce::Slider *slider) {
     
     if(slider == &gainSlider) {
-        audioProcessor.gainValue = slider->getValue();
+        audioProcessor.gainValue = slider->getValue()/100.f;
+    }
+    else if (slider == &depthSlider) {
+        audioProcessor.depthValue = slider->getValue()/100.f;
+    }
+    else if (slider == &rateSlider) {
+        audioProcessor.rateValue = slider->getValue();
+    }
+    else if (slider == &mixSlider) {
+        audioProcessor.mixValue = slider->getValue()/100.f;
     }
     
 }

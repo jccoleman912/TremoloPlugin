@@ -14,9 +14,18 @@
 
 float TremoloProcessing::processSample(float x, const int c){
     
-    LFO = sin(2 * M_PI * 1.f * currentTimeInSeconds);
+//    if(i > hwBufferSize) {
+//        i = 0;
+//    }
     
-    y = x * LFO;
+    LFO = sin(2 * M_PI * rate * currentTimeInSeconds);
+    
+    LFO *= halvedDepth;
+    LFO += 1 - halvedDepth;
+    
+//    i++;
+    
+    y = gain * x * LFO;
     
     return y;
     
@@ -35,7 +44,7 @@ void TremoloProcessing::setCurrentTime(juce::Optional<double> timeInSeconds) {
 }
 
 void TremoloProcessing::setDepth(float intDepthPercentage) {
-    depth = intDepthPercentage;
+    halvedDepth = intDepthPercentage/2.f;
 }
 
 void TremoloProcessing::setGain(float inGain) {

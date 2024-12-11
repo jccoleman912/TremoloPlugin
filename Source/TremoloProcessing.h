@@ -24,6 +24,7 @@ public:
     
     void prepareToPlay(double sampleRate, int bufferSize){
         Fs = (float) sampleRate;
+        hwBufferSize = bufferSize;
     }
     
     void setFrequency(float frequencyHZ);
@@ -41,11 +42,13 @@ private:
     
     float y = 0.f;
     // Input parameters
-    float depth, rate = 2.f, gain, period, phase = 0.f, LFO;
+    float halvedDepth, rate = 2.f, gain, period, phase = 0.f, LFO;
     
     double currentTimeInSeconds;
     
     float Fs;
+    float hwBufferSize;
+    int i = 0;
     
 };
 

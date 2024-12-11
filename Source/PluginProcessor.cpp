@@ -93,8 +93,7 @@ void TremoloPluginAudioProcessor::changeProgramName (int index, const juce::Stri
 //==============================================================================
 void TremoloPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    tremoloProcessor.prepareToPlay(sampleRate, samplesPerBlock);
 }
 
 void TremoloPluginAudioProcessor::releaseResources()
@@ -153,7 +152,16 @@ void TremoloPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
     
 
     
+    playHead = this->getPlayHead();
+
+    positionInfo = playHead->getPosition();
+    currentTimeInSeconds = positionInfo->getTimeInSeconds();
     
+    tremoloProcessor.setCurrentTime(currentTimeInSeconds);
+    
+    tremoloProcessor.setGain(gainValue);
+    tremoloProcessor.setFrequency(rateValue);
+    tremoloProcessor.setDepth(depthValue);
     
     
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
@@ -161,17 +169,6 @@ void TremoloPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
         
         for (int n = 0; n < buffer.getNumSamples(); ++n)
         {
-            
-            playHead = this->getPlayHead();
-
-//            playHead->getCurrentPosition(positionInfo);
-            positionInfo = playHead->getPosition();
-            currentTimeInSeconds = positionInfo->getTimeInSeconds();
-            
-            tremoloProcessor.setCurrentTime(currentTimeInSeconds);
-            
-            tremoloProcessor.setGain(gainValue/100.f);
-            
             x = buffer.getWritePointer(channel)[n];
             y = tremoloProcessor.processSample(x, channel);
             buffer.getWritePointer(channel)[n] = y;
